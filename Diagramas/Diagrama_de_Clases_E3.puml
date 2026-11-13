@@ -1,0 +1,49 @@
+@startuml Ejercicio 3
+
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+
+class "ModuloEjercicio3 <<module>>" as Mod3 {
+    + FONDO : str
+    + TARJETA : str
+    + BORDE : str
+    + TEXTO : str
+    + GRIS : str
+    + ACENTO : str
+    + ACENTO_HOVER : str
+    + ERROR : str
+    + main(valor: float) : void
+}
+
+class CalculosNumericos {
+    + {static} logaritmo(valor: float) : float
+    + {static} raiz_cuadrada(valor: float) : float
+}
+
+class App {
+    + ventana : tk.Tk
+    + tarea : str
+    + lineas : list
+    + ejecutando : bool
+    + letra : str
+    + mono : str
+    + salida : tk.Text
+    + campo_valor : tk.Entry
+    + estado : tk.Label
+    + __init__(ventana: tk.Tk)
+    + buscar_fuente(opciones: list, por_defecto: str) : str
+    + crear_encabezado() : void
+    + crear_cuerpo() : void
+    + crear_datos(padre) : void
+    + crear_campo(padre, texto, fila, valor) : tk.Entry
+    + crear_pie() : void
+    + crear_boton(padre, texto, comando, fondo, color, hover, borde) : tk.Label
+    + ejecutar() : void
+    + mostrar_linea() : void
+    + limpiar() : void
+}
+
+Mod3 ..> CalculosNumericos : usa métodos estáticos
+App ..> Mod3 : llama main()
+
+@enduml

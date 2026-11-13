@@ -1,0 +1,55 @@
+@startuml Ejercicio 2
+
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+
+class "ModuloEjercicio2 <<module>>" as Mod2 {
+    + FONDO : str
+    + TARJETA : str
+    + BORDE : str
+    + TEXTO : str
+    + GRIS : str
+    + ACENTO : str
+    + ACENTO_HOVER : str
+    + ERROR : str
+    + main(nombre: str, apellidos: str, edad: int) : void
+}
+
+class Vendedor {
+    + nombre : str
+    + apellidos : str
+    + edad : int
+    + __init__(nombre: str, apellidos: str, edad: int)
+    + imprimir() : void
+    + {static} verificar_edad(edad: int) : void
+}
+
+class App {
+    + ventana : tk.Tk
+    + tarea : str
+    + lineas : list<tuple>
+    + ejecutando : bool
+    + letra : str
+    + mono : str
+    + salida : tk.Text
+    + campo_nombre : tk.Entry
+    + campo_apellidos : tk.Entry
+    + campo_edad : tk.Entry
+    + estado : tk.Label
+    + __init__(ventana: tk.Tk)
+    + buscar_fuente(opciones: list, por_defecto: str) : str
+    + crear_encabezado() : void
+    + crear_cuerpo() : void
+    + crear_datos(padre) : void
+    + crear_campo(padre, texto, fila, valor) : tk.Entry
+    + crear_pie() : void
+    + crear_boton(padre, texto, comando, fondo, color, hover, borde) : tk.Label
+    + ejecutar() : void
+    + mostrar_linea() : void
+    + limpiar() : void
+}
+
+Mod2 ..> Vendedor : instancia y valida
+App ..> Mod2 : llama main()
+
+@enduml

@@ -1,0 +1,40 @@
+@startuml Ejercicio 1
+
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+
+class "ModuloEjercicio1 <<module>>" as Mod1 {
+    + FONDO : str
+    + TARJETA : str
+    + BORDE : str
+    + TEXTO : str
+    + GRIS : str
+    + ACENTO : str
+    + ACENTO_HOVER : str
+    + ERROR : str
+    + main() : void
+}
+
+class App {
+    + ventana : tk.Tk
+    + tarea : str
+    + lineas : list<str>
+    + ejecutando : bool
+    + letra : str
+    + mono : str
+    + salida : tk.Text
+    + estado : tk.Label
+    + __init__(ventana: tk.Tk)
+    + buscar_fuente(opciones: list, por_defecto: str) : str
+    + crear_encabezado() : void
+    + crear_cuerpo() : void
+    + crear_pie() : void
+    + crear_boton(padre, texto, comando, fondo, color, hover, borde) : tk.Label
+    + ejecutar() : void
+    + mostrar_linea() : void
+    + limpiar() : void
+}
+
+App ..> Mod1 : ejecuta main()
+
+@enduml

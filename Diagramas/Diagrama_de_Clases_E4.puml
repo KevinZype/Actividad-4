@@ -1,0 +1,72 @@
+@startuml Ejercicio 4 
+
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+
+class "ModuloEjercicio4 <<module>>" as Mod4 {
+    + FONDO : str
+    + TARJETA : str
+    + BORDE : str
+    + TEXTO : str
+    + GRIS : str
+    + ACENTO : str
+    + ACENTO_HOVER : str
+    + ERROR : str
+    + main(nombre: str, universidad: str, lenguaje: str, tamano: int, integrantes: list) : EquipoMaratonProgramacion
+}
+
+class Programador {
+    + nombre : str
+    + apellidos : str
+    + __init__(nombre: str, apellidos: str)
+}
+
+class EquipoMaratonProgramacion {
+    + nombre : str
+    + universidad : str
+    + lenguaje : str
+    + tamano : int
+    + programadores : list<Programador>
+    + __init__(nombre: str, universidad: str, lenguaje: str, tamano: int)
+    + esta_completo() : bool
+    + anadir_programador(programador: Programador) : void
+    + validar_programador(programador: Programador) : void
+    + {static} validar_texto(texto: str, campo: str) : void
+}
+
+class App {
+    + ventana : tk.Tk
+    + tarea : str
+    + lineas : list<tuple>
+    + ejecutando : bool
+    + resumen : str
+    + letra : str
+    + mono : str
+    + salida : tk.Text
+    + campo_nombre : tk.Entry
+    + campo_universidad : tk.Entry
+    + campo_lenguaje : tk.Entry
+    + campo_tamano : tk.Entry
+    + integrantes : list<tuple>
+    + estado : tk.Label
+    + __init__(ventana: tk.Tk)
+    + buscar_fuente(opciones: list, por_defecto: str) : str
+    + crear_encabezado() : void
+    + crear_cuerpo() : void
+    + crear_equipo(padre) : void
+    + crear_integrantes(padre) : void
+    + crear_campo(padre, texto, fila, valor) : tk.Entry
+    + crear_entrada(padre, fila, columna, valor, padx) : tk.Entry
+    + crear_pie() : void
+    + crear_boton(padre, texto, comando, fondo, color, hover, borde) : tk.Label
+    + ejecutar() : void
+    + mostrar_linea() : void
+    + limpiar() : void
+}
+
+EquipoMaratonProgramacion "1" o-- "0..3" Programador : contiene >
+Mod4 ..> EquipoMaratonProgramacion : crea y valida
+Mod4 ..> Programador : instancia
+App ..> Mod4 : llama main()
+
+@enduml
